@@ -1,10 +1,103 @@
-<header class="sticky top-0 z-50 w-full h-16 backdrop-blur-lg bg-white/40 border-b border-white/20 flex items-center justify-between px-4 md:px-6">
-  <a routerLink="/home" class="text-lg md:text-2xl font-bold text-gray-900 truncate hover:text-gray-700 transition-colors">Elora Verse</a>
-  <nav>
-    <ul class="flex gap-4 md:gap-6 text-sm md:text-base">
-      <li><a routerLink="/home" class="cursor-pointer hover:text-gray-600 transition-colors whitespace-nowrap">Home</a></li>
-      <li><a routerLink="/search" class="cursor-pointer hover:text-gray-600 transition-colors whitespace-nowrap">Search</a></li>
-      <li><a routerLink="/collection" class="cursor-pointer hover:text-gray-600 transition-colors whitespace-nowrap">Collection</a></li>
-    </ul>
-  </nav>
+<header
+  class="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-md border-b border-slate-200"
+>
+  <div
+    class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-4"
+  >
+    <a
+      routerLink="/"
+      class="flex items-center gap-2 group cursor-pointer text-decoration-none"
+    >
+      <div
+        class="h-8 w-8 rounded-full bg-slate-900 flex items-center justify-center text-amber-400 font-serif font-bold text-xl"
+      >
+        E
+      </div>
+      <span class="font-serif text-2xl font-bold text-slate-900 tracking-tight"
+        >Elora Verse</span
+      >
+    </a>
+
+    <div class="hidden md:flex flex-1 max-w-md mx-4">
+      <div class="relative w-full">
+        <span
+          class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-5 h-5"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+            />
+          </svg>
+        </span>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-4">
+      <nav class="hidden md:flex gap-6 text-sm font-medium text-slate-600">
+        <a
+          routerLink="/"
+          routerLinkActive="text-slate-900 font-semibold"
+          [routerLinkActiveOptions]="{exact: true}"
+          class="hover:text-slate-900 transition-colors"
+          >Search</a
+        >
+        <a
+          routerLink="/collection"
+          routerLinkActive="text-slate-900 font-semibold"
+          class="hover:text-slate-900 transition-colors"
+          >My Collection</a
+        >
+      </nav>
+
+      <!-- Mobile Menu Button -->
+      <button 
+        (click)="toggleMobileMenu()" 
+        class="md:hidden p-2 text-slate-600 hover:text-slate-900 focus:outline-none transition-colors"
+        aria-label="Toggle menu"
+      >
+        <i class="fas" [class.fa-bars]="!isMobileMenuOpen" [class.fa-times]="isMobileMenuOpen"></i>
+      </button>
+
+      <div
+        class="h-9 w-9 rounded-full bg-slate-200 overflow-hidden border border-slate-300 cursor-pointer"
+      >
+        <img
+          src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix"
+          alt="User"
+        />
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu Dropdown -->
+  <div *ngIf="isMobileMenuOpen" class="md:hidden absolute top-16 left-0 w-full bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-lg animate-fade-in-down">
+    <nav class="flex flex-col p-4 space-y-2">
+      <a 
+        routerLink="/" 
+        (click)="closeMobileMenu()"
+        routerLinkActive="bg-slate-100 text-slate-900"
+        [routerLinkActiveOptions]="{exact: true}"
+        class="block px-4 py-3 rounded-lg text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium transition-all"
+      >
+        <i class="fas fa-search mr-3 opacity-70"></i>Search
+      </a>
+      <a 
+        routerLink="/collection" 
+        (click)="closeMobileMenu()"
+        routerLinkActive="bg-slate-100 text-slate-900"
+        class="block px-4 py-3 rounded-lg text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium transition-all"
+      >
+        <i class="fas fa-bookmark mr-3 opacity-70"></i>My Collection
+      </a>
+    </nav>
+  </div>
 </header>
