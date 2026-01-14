@@ -1,6 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BookService } from '../../services/book.services';
+import { BookService } from '../../services/book.service';
+import { Book } from '../../model/book.type';
 
 @Component({
   selector: 'app-home',
@@ -11,16 +12,37 @@ import { BookService } from '../../services/book.services';
 export class HomeComponent implements OnInit {
   bookService = inject(BookService);
   
-  trendingBooks = [
-    { id: 1, title: 'The Midnight Library', author: 'Matt Haig' },
-    { id: 2, title: 'Lessons in Chemistry', author: 'Bonnie Garmus' },
-    { id: 3, title: 'Tomorrow, and Tomorrow, and Tomorrow', author: 'Gabrielle Zevin' },
-    { id: 4, title: 'The Seven Husbands of Evelyn Hugo', author: 'Taylor Jenkins Reid' },
-    { id: 5, title: 'Circe', author: 'Madeline Miller' },
-    { id: 6, title: 'Project Hail Mary', author: 'Andy Weir' }
-  ];
+  trendingBooks: Book[] = [];
+  isLoading = false;
 
   ngOnInit(): void {
-    // Initialize home page
+    this.loadTrendingBooks();
+  }
+
+  loadTrendingBooks(): void {
+    this.isLoading = true;
+    this.bookService.getTrendingBooks(12).subscribe({
+      next: (books) => {
+        this.trendingBooks = books;
+        this.isLoading = false;
+      },
+      error: (error) => {
+        console.error('Error loading trending books:', error);
+        this.isLoading = false;
+        // Fallback to mock data if API fails
+        this.trendingBooks = this.getMockBooks();
+      }
+    });
+  }
+
+  private getMockBooks(): Book[] {
+    return [
+      { id: '1', title: 'The Midnight Library', authors: ['Matt Haig'], author: 'Matt Haig', coverUrl: '' },
+      { id: '2', title: 'Lessons in Chemistry', authors: ['Bonnie Garmus'], author: 'Bonnie Garmus', coverUrl: '' },
+      { id: '3', title: 'Tomorrow, and Tomorrow, and Tomorrow', authors: ['Gabrielle Zevin'], author: 'Gabrielle Zevin', coverUrl: '' },
+      { id: '4', title: 'The Seven Husbands of Evelyn Hugo', authors: ['Taylor Jenkins Reid'], author: 'Taylor Jenkins Reid', coverUrl: '' },
+      { id: '5', title: 'Circe', authors: ['Madeline Miller'], author: 'Madeline Miller', coverUrl: '' },
+      { id: '6', title: 'Project Hail Mary', authors: ['Andy Weir'], author: 'Andy Weir', coverUrl: '' }
+    ];
   }
 }

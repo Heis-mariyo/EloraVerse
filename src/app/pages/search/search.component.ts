@@ -1,6 +1,8 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BookService } from '../../services/book.services';
+import { BookService } from '../../services/book.service';
+import { Book } from '../../model/book.type';
+import { debounceTime, distinctUntilChanged, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-search',
@@ -12,27 +14,43 @@ export class SearchComponent implements OnInit {
   bookService = inject(BookService);
   
   searchQuery = '';
-  searchResults: any[] = [];
+  searchResults: Book[] = [];
+  isLoading = false;
+  private searchSubject = new Subject<string>();
 
   ngOnInit(): void {
-    // Initialize search page
+    // Debounce search input
+    this.searchSubject.pipe(
+      debounceTime(500),
+      distinctUntilChanged()
+    ).subscribe(query => {
+      this.performSearch(query);
+    });
   }
 
   onSearch(event: Event): void {
     const input = event.target as HTMLInputElement;
     this.searchQuery = input.value;
-    
-    if (this.searchQuery.length > 0) {
-      // Call book service to search
-      // this.bookService.searchBooks(this.searchQuery).subscribe(...)
-      // For now, using mock data
-      this.searchResults = [
-        { id: 1, title: 'Sample Book 1', author: 'Author 1' },
-        { id: 2, title: 'Sample Book 2', author: 'Author 2' },
-        { id: 3, title: 'Sample Book 3', author: 'Author 3' }
-      ];
-    } else {
+    this.searchSubject.next(this.searchQuery);
+  }
+
+  private performSearch(query: string): void {
+    if (query.length === 0) {
       this.searchResults = [];
+      return;
     }
+
+    this.isLoading = true;
+    this.bookService.searchBooks(query, 20).subscribe({
+      next: (books) => {
+        this.searchResults = books;
+        this.isLoading = false;
+      },
+      error: (error) => {
+        console.error('Search error:', error);
+        this.searchResults = [];
+        this.isLoading = false;
+      }
+    });
   }
 }

@@ -15,8 +15,13 @@
     />
   </div>
 
+  <!-- Loading State -->
+  <div *ngIf="isLoading" class="text-center py-16">
+    <p class="text-slate-500 text-lg">Searching...</p>
+  </div>
+
   <!-- Search Results -->
-  <div class="space-y-8">
+  <div *ngIf="!isLoading" class="space-y-8">
     <!-- Results Header -->
     <div *ngIf="searchQuery && searchResults.length > 0" class="space-y-4">
       <div class="flex justify-between items-center">
@@ -31,7 +36,8 @@
       <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
         <div *ngFor="let book of searchResults" class="book-card group">
           <div class="relative">
-            <div class="book-card-image bg-slate-200"></div>
+            <img *ngIf="book.coverUrl" [src]="book.coverUrl" [alt]="book.title" class="book-card-image bg-slate-200">
+            <div *ngIf="!book.coverUrl" class="book-card-image bg-slate-200 flex items-center justify-center text-slate-400 text-xs">No Cover</div>
             <button class="book-card-favorite">
               <span class="text-amber-500 text-lg">♡</span>
             </button>
@@ -45,7 +51,7 @@
     </div>
 
     <!-- No Results State -->
-    <div *ngIf="searchQuery && searchResults.length === 0" class="text-center py-16 space-y-4">
+    <div *ngIf="searchQuery && searchResults.length === 0 && !isLoading" class="text-center py-16 space-y-4">
       <p class="text-xl text-slate-600">No books found.</p>
       <p class="text-slate-500">Try a different keyword or explore popular categories.</p>
     </div>

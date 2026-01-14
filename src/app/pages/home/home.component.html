@@ -6,8 +6,8 @@
       Explore a curated collection of books from different genres, authors, and cultures. Find your next great read with ease.
     </p>
     <div class="flex gap-4 justify-center pt-4">
-      <button class="btn btn-primary">Search Books</button>
-      <button class="btn btn-secondary">Explore Collection</button>
+      <button routerLink="/search" class="btn btn-primary">Search Books</button>
+      <button routerLink="/collection" class="btn btn-secondary">Explore Collection</button>
     </div>
   </div>
 </section>
@@ -15,14 +15,19 @@
 <!-- Trending Reads Section -->
 <section class="px-4 py-16 max-w-7xl mx-auto">
   <div class="space-y-2 mb-8">
-    <h2 class="section-title">Trending Reads</h2>
+    <h2 class="section-title">Trending Books</h2>
     <p class="text-slate-600">A hand-picked selection of books readers are exploring right now.</p>
   </div>
   
-  <div class="scroll-container">
+  <div *ngIf="isLoading" class="text-center py-12">
+    <p class="text-slate-500">Loading books...</p>
+  </div>
+  
+  <div *ngIf="!isLoading && trendingBooks.length > 0" class="scroll-container">
     <div *ngFor="let book of trendingBooks" class="book-card group flex-shrink-0 w-48">
       <div class="relative">
-        <div class="book-card-image bg-slate-200 rounded-t-lg"></div>
+        <img *ngIf="book.coverUrl" [src]="book.coverUrl" [alt]="book.title" class="book-card-image bg-slate-200 rounded-t-lg">
+        <div *ngIf="!book.coverUrl" class="book-card-image bg-slate-200 rounded-t-lg flex items-center justify-center text-slate-400">No Cover</div>
         <button class="book-card-favorite">
           <span class="text-amber-500 text-lg">♡</span>
         </button>

@@ -1,6 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BookService } from '../../services/book.services';
+import { BookService } from '../../services/book.service';
+import { Book } from '../../model/book.type';
 
 @Component({
   selector: 'app-collection',
@@ -11,7 +12,7 @@ import { BookService } from '../../services/book.services';
 export class CollectionComponent implements OnInit {
   bookService = inject(BookService);
   
-  savedBooks: any[] = [];
+  savedBooks: Book[] = [];
 
   ngOnInit(): void {
     // Load saved books from service or localStorage
@@ -19,16 +20,17 @@ export class CollectionComponent implements OnInit {
   }
 
   loadSavedBooks(): void {
-    // Mock data for now
-    this.savedBooks = [
-      { id: 1, title: 'The Midnight Library', author: 'Matt Haig', savedAt: new Date() },
-      { id: 2, title: 'Lessons in Chemistry', author: 'Bonnie Garmus', savedAt: new Date() }
-    ];
-    // In production: this.bookService.getSavedBooks().subscribe(books => this.savedBooks = books);
+    // Mock data for now - in production, load from localStorage or backend
+    const mockSavedBooks: Book[] = [];
+    this.savedBooks = mockSavedBooks;
+    // In production: 
+    // const saved = localStorage.getItem('savedBooks');
+    // this.savedBooks = saved ? JSON.parse(saved) : [];
   }
 
-  removeFromCollection(bookId: number): void {
+  removeFromCollection(bookId: string): void {
     this.savedBooks = this.savedBooks.filter(book => book.id !== bookId);
-    // Call service to remove from backend: this.bookService.removeFromCollection(bookId).subscribe(...);
+    // Save to localStorage
+    // localStorage.setItem('savedBooks', JSON.stringify(this.savedBooks));
   }
 }
