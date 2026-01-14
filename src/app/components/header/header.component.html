@@ -11,22 +11,22 @@
     </a>
 
     <!-- Desktop Nav -->
-    <nav class="flex items-center gap-8 text-sm font-medium text-slate-600">
+    <nav class="flex gap-8 text-sm font-medium text-slate-600 items-end justify-center">
       <a routerLink="/search" routerLinkActive="text-slate-900 font-bold bg-slate-100/50 px-3 py-1 rounded-full" class="hover:text-slate-900 transition-all">Search</a>
       <a routerLink="/collection" routerLinkActive="text-slate-900 font-bold bg-slate-100/50 px-3 py-1 rounded-full" class="hover:text-slate-900 transition-all">My Collection</a>
     </nav>
 
     <!-- User Profile -->
-    <div class="h-10 w-10 rounded-full bg-slate-200 overflow-hidden border-2 border-white shadow-sm cursor-pointer hover:border-amber-200 transition-colors">
-      <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" alt="User" class="w-full h-full object-cover">
+    <div class="h-10 w-10 rounded-full bg-slate-200 overflow-hidden border-2 border-white shadow-sm cursor-pointer hover:border-amber-200 transition-colors flex items-center justify-center">
+      <i class="fas fa-user"></i>
     </div>
   </div>
 
   <!-- Mobile: Split Islands design with expanded right pill -->
   <div class="md:hidden flex w-full items-center px-4 gap-2">
     <!-- Left Island: Logo (Fixed) -->
-    <a routerLink="/" class="pointer-events-auto h-12 w-12 flex-none rounded-full bg-white/80 backdrop-blur-md shadow-lg border border-white/40 flex items-center justify-center active:scale-95 transition-transform">
-      <div class="font-serif font-bold text-xl text-slate-900">E</div>
+    <a routerLink="/" class="pointer-events-auto h-12 w-12 flex-none rounded-full bg-slate-900 backdrop-blur-md shadow-lg border border-white/40 flex items-center justify-center active:scale-95 transition-transform">
+      <div class="font-serif font-bold text-xl text-amber-400">E</div>
     </a>
 
     <!-- Right Island: Text + Controls (Expanded) -->
@@ -42,8 +42,8 @@
         </button>
 
         <!-- Profile -->
-        <div class="h-8 w-8 rounded-full bg-slate-200 overflow-hidden border border-slate-300">
-          <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" alt="User" class="w-full h-full object-cover">
+        <div class="h-8 w-8 rounded-full bg-slate-200 overflow-hidden border border-slate-300 flex items-center justify-center cursor-pointer hover:border-amber-200 transition-colors">
+          <i class="fas fa-user"></i>
         </div>
       </div>
     </div>
