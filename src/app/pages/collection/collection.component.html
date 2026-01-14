@@ -1,4 +1,4 @@
-<div class="max-w-7xl mx-auto px-4 py-12">
+<div class="max-w-7xl mx-auto px-4 py-12 page-transition">
   <!-- Page Header -->
   <div class="mb-12">
     <h1 class="text-4xl font-bold text-slate-900 mb-2">My Collection</h1>
@@ -7,7 +7,7 @@
 
   <!-- Empty State -->
   <div *ngIf="savedBooks.length === 0" class="flex flex-col items-center justify-center py-24 space-y-6">
-    <div class="text-6xl"><i class="fas fa-shelf"></i></div>
+    <div class="text-6xl"><i class="fas fa-book-open"></i></div>
     <div class="text-center space-y-3">
       <h2 class="text-2xl font-semibold text-slate-900">Your collection is empty.</h2>
       <p class="text-slate-600 text-lg">Start exploring and save books to build your personal library.</p>

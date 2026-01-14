@@ -1,4 +1,5 @@
 <!-- Hero Section -->
+<div class="page-transition">
 <section class="bg-gradient-premium min-h-[500px] flex items-center justify-center px-4 py-20">
   <div class="max-w-2xl text-center space-y-6">
     <h1 class="text-5xl font-bold text-slate-900">Discover Books Beyond the Page</h1>
@@ -30,7 +31,7 @@
   </div>
   
   <div *ngIf="!isLoading && trendingBooks.length > 0" class="scroll-container">
-    <div *ngFor="let book of trendingBooks" class="book-card group flex-shrink-0 w-48">
+    <div *ngFor="let book of trendingBooks" class="book-card scroll-item group flex-shrink-0 w-48">
       <div class="relative">
         <img *ngIf="book.coverUrl" [src]="book.coverUrl" [alt]="book.title" class="book-card-image bg-slate-200 rounded-t-lg">
         <div *ngIf="!book.coverUrl" class="book-card-image bg-slate-200 rounded-t-lg flex items-center justify-center text-slate-400">No Cover</div>
@@ -72,3 +73,4 @@
     </div>
   </div>
 </section>
+</div>

@@ -46,8 +46,8 @@
 @layer components {
   /* Book Card Base Styles */
   .book-card {
-    @apply bg-white rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer;
-    @apply hover:scale-105 overflow-hidden;
+    @apply bg-white rounded-lg shadow-sm transition-all duration-300 cursor-pointer;
+    @apply hover:scale-105 hover:shadow-xl overflow-hidden;
   }
 
   .book-card-image {
@@ -73,8 +73,8 @@
 
   /* Horizontal Scroll Container */
   .scroll-container {
-    @apply overflow-x-auto flex gap-6 pb-4;
-    scroll-behavior: smooth;
+    @apply overflow-x-auto flex gap-6 pb-4 scroll-smooth;
+    scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     /* Hide scrollbar */
     -ms-overflow-style: none;
@@ -83,6 +83,10 @@
 
   .scroll-container::-webkit-scrollbar {
     display: none;
+  }
+
+  .scroll-item {
+    scroll-snap-align: start;
   }
 
   /* Section Title */
@@ -173,6 +177,17 @@
   }
 }
 
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
 @keyframes slideInRight {
   from {
     opacity: 0;
@@ -184,12 +199,50 @@
   }
 }
 
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @layer utilities {
   .animate-fade-in {
-    animation: fadeIn 0.5s ease-out;
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+
+  .animate-fade-out {
+    animation: fadeOut 0.3s ease-in forwards;
   }
 
   .animate-slide-in-right {
     animation: slideInRight 0.5s ease-out;
+  }
+
+  .animate-slide-in-up {
+    animation: slideInUp 0.6s ease-out;
+  }
+
+  /* Page transition wrapper */
+  .page-transition {
+    animation: fadeIn 0.4s ease-out;
+  }
+
+  /* Smooth button transitions */
+  .btn {
+    @apply transition-all duration-200;
+  }
+
+  .btn:active {
+    @apply scale-95;
+  }
+
+  /* Smooth link transitions */
+  a {
+    @apply transition-colors duration-200;
   }
 }
