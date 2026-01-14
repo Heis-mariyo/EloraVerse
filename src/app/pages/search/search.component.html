@@ -1,0 +1,58 @@
+<div class="max-w-7xl mx-auto px-4 py-12">
+  <!-- Page Header -->
+  <div class="mb-12">
+    <h1 class="text-4xl font-bold text-slate-900 mb-2">Search Books</h1>
+    <p class="text-lg text-slate-600">Find books by title, author, or category. Discover new stories in just a few keystrokes.</p>
+  </div>
+
+  <!-- Search Bar -->
+  <div class="mb-12">
+    <input 
+      type="text" 
+      class="search-bar w-full text-lg"
+      placeholder="Search by title, author, or keyword…"
+      (input)="onSearch($event)"
+    />
+  </div>
+
+  <!-- Search Results -->
+  <div class="space-y-8">
+    <!-- Results Header -->
+    <div *ngIf="searchQuery && searchResults.length > 0" class="space-y-4">
+      <div class="flex justify-between items-center">
+        <h2 class="text-2xl font-semibold text-slate-900">Showing results for "{{ searchQuery }}"</h2>
+        <div class="space-x-4">
+          <button class="text-sm text-slate-600 hover:text-slate-900 transition-colors">Sort: Relevance</button>
+          <button class="text-sm text-slate-600 hover:text-slate-900 transition-colors">Filter</button>
+        </div>
+      </div>
+
+      <!-- Results Grid -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+        <div *ngFor="let book of searchResults" class="book-card group">
+          <div class="relative">
+            <div class="book-card-image bg-slate-200"></div>
+            <button class="book-card-favorite">
+              <span class="text-amber-500 text-lg">♡</span>
+            </button>
+          </div>
+          <div class="book-card-content">
+            <h3 class="book-card-title">{{ book.title }}</h3>
+            <p class="book-card-author text-xs">{{ book.author }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- No Results State -->
+    <div *ngIf="searchQuery && searchResults.length === 0" class="text-center py-16 space-y-4">
+      <p class="text-xl text-slate-600">No books found.</p>
+      <p class="text-slate-500">Try a different keyword or explore popular categories.</p>
+    </div>
+
+    <!-- Empty State -->
+    <div *ngIf="!searchQuery" class="text-center py-16">
+      <p class="text-slate-500 text-lg">Start typing to search for books...</p>
+    </div>
+  </div>
+</div>

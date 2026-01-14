@@ -1,0 +1,199 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+/* ============================================
+   DESIGN SYSTEM: Elora Verse
+   Style & Mood: Minimal, calm, premium
+   ============================================ */
+
+@layer base {
+  * {
+    @apply scroll-smooth;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-slate-50 text-slate-900 font-sans;
+    font-family: 'Inter', sans-serif;
+  }
+
+  /* Typography */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cormorant Garamond', serif;
+    @apply font-semibold tracking-tight;
+  }
+
+  h1 {
+    @apply text-5xl font-bold;
+  }
+
+  h2 {
+    @apply text-4xl font-semibold;
+  }
+
+  h3 {
+    @apply text-2xl font-semibold;
+  }
+
+  p {
+    @apply leading-relaxed;
+  }
+
+  a {
+    @apply transition-colors duration-300;
+  }
+}
+
+@layer components {
+  /* Book Card Base Styles */
+  .book-card {
+    @apply bg-white rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer;
+    @apply hover:scale-105 overflow-hidden;
+  }
+
+  .book-card-image {
+    @apply w-full aspect-[3/4] object-cover rounded-t-lg;
+  }
+
+  .book-card-content {
+    @apply p-4 space-y-2;
+  }
+
+  .book-card-title {
+    @apply text-lg font-semibold text-slate-900 line-clamp-2;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  .book-card-author {
+    @apply text-sm text-slate-600;
+  }
+
+  .book-card-favorite {
+    @apply absolute top-3 right-3 p-2 bg-white/90 rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-300;
+  }
+
+  /* Horizontal Scroll Container */
+  .scroll-container {
+    @apply overflow-x-auto flex gap-6 pb-4;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    /* Hide scrollbar */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scroll-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Section Title */
+  .section-title {
+    @apply text-3xl font-semibold text-slate-900 mb-6;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  /* Search Bar */
+  .search-bar {
+    @apply w-full px-4 py-3 rounded-lg bg-white/80 border border-slate-200 text-slate-900 placeholder-slate-400;
+    @apply focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all duration-300;
+    @apply backdrop-blur-sm shadow-sm;
+  }
+
+  /* Button Base */
+  .btn {
+    @apply px-4 py-2 rounded-lg font-medium transition-all duration-300 cursor-pointer;
+    @apply focus:outline-none focus:ring-2 focus:ring-offset-2;
+  }
+
+  .btn-primary {
+    @apply bg-slate-900 text-white hover:bg-slate-800;
+    @apply focus:ring-slate-500;
+  }
+
+  .btn-secondary {
+    @apply bg-amber-500 text-white hover:bg-amber-600;
+    @apply focus:ring-amber-500;
+  }
+
+  .btn-ghost {
+    @apply bg-transparent text-slate-900 hover:bg-slate-100;
+    @apply focus:ring-slate-500;
+  }
+}
+
+@layer utilities {
+  /* Custom color helpers */
+  .text-primary {
+    @apply text-slate-900;
+  }
+
+  .text-accent {
+    @apply text-amber-600;
+  }
+
+  .bg-primary-light {
+    @apply bg-slate-50;
+  }
+
+  .border-accent {
+    @apply border-amber-200;
+  }
+
+  /* Smooth transitions */
+  .transition-smooth {
+    @apply transition-all duration-300 ease-out;
+  }
+
+  /* Premium shadow */
+  .shadow-premium {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07), 0 1px 3px rgba(0, 0, 0, 0.06);
+  }
+
+  .shadow-premium-lg {
+    box-shadow: 0 20px 25px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.04);
+  }
+
+  /* Gradient utilities */
+  .bg-gradient-premium {
+    @apply bg-gradient-to-br from-slate-50 to-slate-100;
+  }
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out;
+  }
+
+  .animate-slide-in-right {
+    animation: slideInRight 0.5s ease-out;
+  }
+}

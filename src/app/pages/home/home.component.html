@@ -1,0 +1,63 @@
+<!-- Hero Section -->
+<section class="bg-gradient-premium min-h-[500px] flex items-center justify-center px-4 py-20">
+  <div class="max-w-2xl text-center space-y-6">
+    <h1 class="text-5xl font-bold text-slate-900">Discover Books Beyond the Page</h1>
+    <p class="text-xl text-slate-600 leading-relaxed">
+      Explore a curated collection of books from different genres, authors, and cultures. Find your next great read with ease.
+    </p>
+    <div class="flex gap-4 justify-center pt-4">
+      <button class="btn btn-primary">Search Books</button>
+      <button class="btn btn-secondary">Explore Collection</button>
+    </div>
+  </div>
+</section>
+
+<!-- Trending Reads Section -->
+<section class="px-4 py-16 max-w-7xl mx-auto">
+  <div class="space-y-2 mb-8">
+    <h2 class="section-title">Trending Reads</h2>
+    <p class="text-slate-600">A hand-picked selection of books readers are exploring right now.</p>
+  </div>
+  
+  <div class="scroll-container">
+    <div *ngFor="let book of trendingBooks" class="book-card group flex-shrink-0 w-48">
+      <div class="relative">
+        <div class="book-card-image bg-slate-200 rounded-t-lg"></div>
+        <button class="book-card-favorite">
+          <span class="text-amber-500 text-lg">♡</span>
+        </button>
+      </div>
+      <div class="book-card-content">
+        <h3 class="book-card-title">{{ book.title }}</h3>
+        <p class="book-card-author">{{ book.author }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Why Elora Verse Section -->
+<section class="px-4 py-16 bg-slate-50">
+  <div class="max-w-7xl mx-auto">
+    <h2 class="section-title mb-12 text-center">Why Elora Verse?</h2>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="bg-white p-8 rounded-lg shadow-sm text-center space-y-4">
+        <div class="text-4xl">📚</div>
+        <h3 class="font-semibold text-lg text-slate-900">Curated Book Discovery</h3>
+        <p class="text-slate-600">Hand-picked selections tailored to your reading interests.</p>
+      </div>
+      
+      <div class="bg-white p-8 rounded-lg shadow-sm text-center space-y-4">
+        <div class="text-4xl">🔍</div>
+        <h3 class="font-semibold text-lg text-slate-900">Smart Search</h3>
+        <p class="text-slate-600">Powered by Google Books for comprehensive results.</p>
+      </div>
+      
+      <div class="bg-white p-8 rounded-lg shadow-sm text-center space-y-4">
+        <div class="text-4xl">❤️</div>
+        <h3 class="font-semibold text-lg text-slate-900">Your Collection</h3>
+        <p class="text-slate-600">Save and manage your personal library in one place.</p>
+      </div>
+    </div>
+  </div>
+</section>

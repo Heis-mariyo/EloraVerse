@@ -1,0 +1,45 @@
+<div class="max-w-7xl mx-auto px-4 py-12">
+  <!-- Page Header -->
+  <div class="mb-12">
+    <h1 class="text-4xl font-bold text-slate-900 mb-2">My Collection</h1>
+    <p class="text-lg text-slate-600">Your saved books, all in one place. Keep track of stories you love or plan to read.</p>
+  </div>
+
+  <!-- Empty State -->
+  <div *ngIf="savedBooks.length === 0" class="flex flex-col items-center justify-center py-24 space-y-6">
+    <div class="text-6xl">📖</div>
+    <div class="text-center space-y-3">
+      <h2 class="text-2xl font-semibold text-slate-900">Your collection is empty.</h2>
+      <p class="text-slate-600 text-lg">Start exploring and save books to build your personal library.</p>
+    </div>
+    <button class="btn btn-primary mt-6">Explore Books</button>
+  </div>
+
+  <!-- Collection Grid -->
+  <div *ngIf="savedBooks.length > 0" class="space-y-6">
+    <div class="flex justify-between items-center">
+      <p class="text-slate-600">{{ savedBooks.length }} book{{ savedBooks.length !== 1 ? 's' : '' }} in your collection</p>
+      <div class="space-x-4">
+        <button class="text-sm text-slate-600 hover:text-slate-900 transition-colors">Sort by: Added</button>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+      <div *ngFor="let book of savedBooks" class="book-card group">
+        <div class="relative">
+          <div class="book-card-image bg-slate-200"></div>
+          <button class="book-card-favorite" (click)="removeFromCollection(book.id)">
+            <span class="text-amber-500 text-lg">♥</span>
+          </button>
+        </div>
+        <div class="book-card-content">
+          <h3 class="book-card-title">{{ book.title }}</h3>
+          <p class="book-card-author text-xs">{{ book.author }}</p>
+          <button class="text-xs text-amber-600 hover:text-amber-700 mt-2 transition-colors">
+            View Details
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
