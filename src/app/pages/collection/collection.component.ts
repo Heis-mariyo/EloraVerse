@@ -1,11 +1,12 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 import { BookService } from '../../services/book.service';
 import { Book } from '../../model/book.type';
 
 @Component({
   selector: 'app-collection',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './collection.component.html',
   styleUrl: './collection.component.css'
 })
