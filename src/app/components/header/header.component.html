@@ -22,23 +22,29 @@
     </div>
   </div>
 
-  <!-- Mobile: Split Islands design -->
-  <div class="md:hidden flex w-full justify-between items-start px-4">
-    <!-- Left Island: Logo -->
-    <a routerLink="/" class="pointer-events-auto h-12 w-12 rounded-full bg-white/80 backdrop-blur-md shadow-lg border border-white/40 flex items-center justify-center active:scale-95 transition-transform">
+  <!-- Mobile: Split Islands design with expanded right pill -->
+  <div class="md:hidden flex w-full items-center px-4 gap-2">
+    <!-- Left Island: Logo (Fixed) -->
+    <a routerLink="/" class="pointer-events-auto h-12 w-12 flex-none rounded-full bg-white/80 backdrop-blur-md shadow-lg border border-white/40 flex items-center justify-center active:scale-95 transition-transform">
       <div class="font-serif font-bold text-xl text-slate-900">E</div>
     </a>
 
-    <!-- Right Island: Controls -->
-    <div class="pointer-events-auto h-12 px-2 rounded-full bg-white/80 backdrop-blur-md shadow-lg border border-white/40 flex items-center gap-2">
-      <!-- Hamburger Toggle -->
-      <button (click)="toggleMobileMenu()" class="h-10 w-10 rounded-full flex items-center justify-center text-slate-700 hover:bg-slate-100 transition-colors focus:outline-none">
-        <i class="fas" [class.fa-bars]="!isMobileMenuOpen" [class.fa-times]="isMobileMenuOpen"></i>
-      </button>
+    <!-- Right Island: Text + Controls (Expanded) -->
+    <div class="pointer-events-auto h-12 flex-1 rounded-full bg-white/80 backdrop-blur-md shadow-lg border border-white/40 flex items-center justify-between px-2 pl-4">
+      <!-- Elora Verse Text -->
+      <span class="font-serif text-lg font-bold text-slate-900 tracking-tight truncate mr-2">Elora Verse</span>
 
-      <!-- Profile -->
-      <div class="h-8 w-8 rounded-full bg-slate-200 overflow-hidden border border-slate-300">
-        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" alt="User" class="w-full h-full object-cover">
+      <!-- Controls -->
+      <div class="flex items-center gap-2 flex-none">
+        <!-- Hamburger Toggle -->
+        <button (click)="toggleMobileMenu()" class="h-8 w-8 rounded-full flex items-center justify-center text-slate-700 hover:bg-slate-100 transition-colors focus:outline-none">
+          <i class="fas" [class.fa-bars]="!isMobileMenuOpen" [class.fa-times]="isMobileMenuOpen"></i>
+        </button>
+
+        <!-- Profile -->
+        <div class="h-8 w-8 rounded-full bg-slate-200 overflow-hidden border border-slate-300">
+          <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" alt="User" class="w-full h-full object-cover">
+        </div>
       </div>
     </div>
   </div>
@@ -46,10 +52,9 @@
   <!-- Mobile Dropdown Menu (Floating below right island) -->
   <div *ngIf="isMobileMenuOpen" class="pointer-events-auto md:hidden absolute top-20 right-4 w-64 bg-white/95 backdrop-blur-md rounded-2xl shadow-xl border border-white/50 animate-fade-in-down p-2 origin-top-right">
     <nav class="flex flex-col space-y-1">
-      <a routerLink="/" class="flex items-center gap-3 px-4 py-3 text-slate-700 hover:bg-slate-50 hover:text-slate-900 rounded-xl font-serif font-bold text-lg border-b border-slate-100 mb-1">
-        <span class="h-6 w-6 rounded-full bg-slate-900 text-amber-400 text-xs flex items-center justify-center">E</span>
-        Elora Verse
-      </a>
+      <div class="px-4 py-2 border-b border-slate-100 mb-1">
+        <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Menu</span>
+      </div>
       <a routerLink="/search" (click)="closeMobileMenu()" routerLinkActive="bg-slate-100 text-slate-900 font-semibold" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 hover:bg-slate-50 transition-all">
         <i class="fas fa-search w-5 text-center"></i> Search
       </a>
